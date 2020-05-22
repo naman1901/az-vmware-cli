@@ -35,7 +35,13 @@ class ClustersOperations(object):
         self.config = config
 
     def list(
-            self, resource_group_name, private_cloud_name, custom_headers=None, raw=False, **operation_config):
+        self,
+        resource_group_name,
+        private_cloud_name,
+        custom_headers=None,
+        raw=False,
+        **operation_config,
+    ):
         """List clusters in a private cloud.
 
         :param resource_group_name: Name of the resource group within the
@@ -54,21 +60,32 @@ class ClustersOperations(object):
         :raises:
          :class:`ApiErrorException<vendored_sdks.models.ApiErrorException>`
         """
+
         def internal_paging(next_link=None, raw=False):
 
             if not next_link:
                 # Construct URL
-                url = self.list.metadata['url']
+                url = self.list.metadata["url"]
                 path_format_arguments = {
-                    'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
-                    'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
-                    'privateCloudName': self._serialize.url("private_cloud_name", private_cloud_name, 'str')
+                    "subscriptionId": self._serialize.url(
+                        "self.config.subscription_id",
+                        self.config.subscription_id,
+                        "str",
+                    ),
+                    "resourceGroupName": self._serialize.url(
+                        "resource_group_name", resource_group_name, "str"
+                    ),
+                    "privateCloudName": self._serialize.url(
+                        "private_cloud_name", private_cloud_name, "str"
+                    ),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
 
                 # Construct parameters
                 query_parameters = {}
-                query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
+                query_parameters["api-version"] = self._serialize.query(
+                    "self.api_version", self.api_version, "str"
+                )
 
             else:
                 url = next_link
@@ -76,13 +93,15 @@ class ClustersOperations(object):
 
             # Construct headers
             header_parameters = {}
-            header_parameters['Accept'] = 'application/json'
+            header_parameters["Accept"] = "application/json"
             if self.config.generate_client_request_id:
-                header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+                header_parameters["x-ms-client-request-id"] = str(uuid.uuid1())
             if custom_headers:
                 header_parameters.update(custom_headers)
             if self.config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+                header_parameters["accept-language"] = self._serialize.header(
+                    "self.config.accept_language", self.config.accept_language, "str"
+                )
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -94,18 +113,32 @@ class ClustersOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.ClusterPaged(internal_paging, self._deserialize.dependencies)
+        deserialized = models.ClusterPaged(
+            internal_paging, self._deserialize.dependencies
+        )
 
         if raw:
             header_dict = {}
-            client_raw_response = models.ClusterPaged(internal_paging, self._deserialize.dependencies, header_dict)
+            client_raw_response = models.ClusterPaged(
+                internal_paging, self._deserialize.dependencies, header_dict
+            )
             return client_raw_response
 
         return deserialized
-    list.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters'}
+
+    list.metadata = {
+        "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters"
+    }
 
     def get(
-            self, resource_group_name, private_cloud_name, cluster_name, custom_headers=None, raw=False, **operation_config):
+        self,
+        resource_group_name,
+        private_cloud_name,
+        cluster_name,
+        custom_headers=None,
+        raw=False,
+        **operation_config,
+    ):
         """Get a cluster by name in a private cloud.
 
         :param resource_group_name: Name of the resource group within the
@@ -127,28 +160,38 @@ class ClustersOperations(object):
          :class:`ApiErrorException<vendored_sdks.models.ApiErrorException>`
         """
         # Construct URL
-        url = self.get.metadata['url']
+        url = self.get.metadata["url"]
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
-            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
-            'privateCloudName': self._serialize.url("private_cloud_name", private_cloud_name, 'str'),
-            'clusterName': self._serialize.url("cluster_name", cluster_name, 'str')
+            "subscriptionId": self._serialize.url(
+                "self.config.subscription_id", self.config.subscription_id, "str"
+            ),
+            "resourceGroupName": self._serialize.url(
+                "resource_group_name", resource_group_name, "str"
+            ),
+            "privateCloudName": self._serialize.url(
+                "private_cloud_name", private_cloud_name, "str"
+            ),
+            "clusterName": self._serialize.url("cluster_name", cluster_name, "str"),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
-        query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
+        query_parameters["api-version"] = self._serialize.query(
+            "self.api_version", self.api_version, "str"
+        )
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Accept'] = 'application/json'
+        header_parameters["Accept"] = "application/json"
         if self.config.generate_client_request_id:
-            header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+            header_parameters["x-ms-client-request-id"] = str(uuid.uuid1())
         if custom_headers:
             header_parameters.update(custom_headers)
         if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+            header_parameters["accept-language"] = self._serialize.header(
+                "self.config.accept_language", self.config.accept_language, "str"
+            )
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -160,48 +203,70 @@ class ClustersOperations(object):
         deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Cluster', response)
+            deserialized = self._deserialize("Cluster", response)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
             return client_raw_response
 
         return deserialized
-    get.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}'}
 
+    get.metadata = {
+        "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}"
+    }
 
     def _create_or_update_initial(
-            self, resource_group_name, private_cloud_name, cluster_name, cluster, custom_headers=None, raw=False, **operation_config):
+        self,
+        resource_group_name,
+        private_cloud_name,
+        cluster_name,
+        cluster,
+        custom_headers=None,
+        raw=False,
+        **operation_config,
+    ):
         # Construct URL
-        url = self.create_or_update.metadata['url']
+        url = self.create_or_update.metadata["url"]
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
-            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
-            'privateCloudName': self._serialize.url("private_cloud_name", private_cloud_name, 'str'),
-            'clusterName': self._serialize.url("cluster_name", cluster_name, 'str')
+            "subscriptionId": self._serialize.url(
+                "self.config.subscription_id", self.config.subscription_id, "str"
+            ),
+            "resourceGroupName": self._serialize.url(
+                "resource_group_name", resource_group_name, "str"
+            ),
+            "privateCloudName": self._serialize.url(
+                "private_cloud_name", private_cloud_name, "str"
+            ),
+            "clusterName": self._serialize.url("cluster_name", cluster_name, "str"),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
-        query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
+        query_parameters["api-version"] = self._serialize.query(
+            "self.api_version", self.api_version, "str"
+        )
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        header_parameters["Accept"] = "application/json"
+        header_parameters["Content-Type"] = "application/json; charset=utf-8"
         if self.config.generate_client_request_id:
-            header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+            header_parameters["x-ms-client-request-id"] = str(uuid.uuid1())
         if custom_headers:
             header_parameters.update(custom_headers)
         if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+            header_parameters["accept-language"] = self._serialize.header(
+                "self.config.accept_language", self.config.accept_language, "str"
+            )
 
         # Construct body
-        body_content = self._serialize.body(cluster, 'Cluster')
+        body_content = self._serialize.body(cluster, "Cluster")
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        request = self._client.put(
+            url, query_parameters, header_parameters, body_content
+        )
         response = self._client.send(request, stream=False, **operation_config)
 
         if response.status_code not in [200, 201]:
@@ -210,9 +275,9 @@ class ClustersOperations(object):
         deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Cluster', response)
+            deserialized = self._deserialize("Cluster", response)
         if response.status_code == 201:
-            deserialized = self._deserialize('Cluster', response)
+            deserialized = self._deserialize("Cluster", response)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
@@ -221,7 +286,16 @@ class ClustersOperations(object):
         return deserialized
 
     def create_or_update(
-            self, resource_group_name, private_cloud_name, cluster_name, cluster, custom_headers=None, raw=False, polling=True, **operation_config):
+        self,
+        resource_group_name,
+        private_cloud_name,
+        cluster_name,
+        cluster,
+        custom_headers=None,
+        raw=False,
+        polling=True,
+        **operation_config,
+    ):
         """Create or update a cluster in a private cloud.
 
         :param resource_group_name: Name of the resource group within the
@@ -254,11 +328,11 @@ class ClustersOperations(object):
             cluster=cluster,
             custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **operation_config,
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Cluster', response)
+            deserialized = self._deserialize("Cluster", response)
 
             if raw:
                 client_raw_response = ClientRawResponse(deserialized, response)
@@ -267,47 +341,74 @@ class ClustersOperations(object):
             return deserialized
 
         lro_delay = operation_config.get(
-            'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
-        if polling is True: polling_method = ARMPolling(lro_delay, **operation_config)
-        elif polling is False: polling_method = NoPolling()
-        else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    create_or_update.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}'}
+            "long_running_operation_timeout", self.config.long_running_operation_timeout
+        )
+        if polling is True:
+            polling_method = ARMPolling(lro_delay, **operation_config)
+        elif polling is False:
+            polling_method = NoPolling()
+        else:
+            polling_method = polling
+        return LROPoller(
+            self._client, raw_result, get_long_running_output, polling_method
+        )
 
+    create_or_update.metadata = {
+        "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}"
+    }
 
     def _update_initial(
-            self, resource_group_name, private_cloud_name, cluster_name, cluster, custom_headers=None, raw=False, **operation_config):
+        self,
+        resource_group_name,
+        private_cloud_name,
+        cluster_name,
+        cluster,
+        custom_headers=None,
+        raw=False,
+        **operation_config,
+    ):
         # Construct URL
-        url = self.update.metadata['url']
+        url = self.update.metadata["url"]
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
-            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
-            'privateCloudName': self._serialize.url("private_cloud_name", private_cloud_name, 'str'),
-            'clusterName': self._serialize.url("cluster_name", cluster_name, 'str')
+            "subscriptionId": self._serialize.url(
+                "self.config.subscription_id", self.config.subscription_id, "str"
+            ),
+            "resourceGroupName": self._serialize.url(
+                "resource_group_name", resource_group_name, "str"
+            ),
+            "privateCloudName": self._serialize.url(
+                "private_cloud_name", private_cloud_name, "str"
+            ),
+            "clusterName": self._serialize.url("cluster_name", cluster_name, "str"),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
-        query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
+        query_parameters["api-version"] = self._serialize.query(
+            "self.api_version", self.api_version, "str"
+        )
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        header_parameters["Accept"] = "application/json"
+        header_parameters["Content-Type"] = "application/json; charset=utf-8"
         if self.config.generate_client_request_id:
-            header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+            header_parameters["x-ms-client-request-id"] = str(uuid.uuid1())
         if custom_headers:
             header_parameters.update(custom_headers)
         if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+            header_parameters["accept-language"] = self._serialize.header(
+                "self.config.accept_language", self.config.accept_language, "str"
+            )
 
         # Construct body
-        body_content = self._serialize.body(cluster, 'Cluster')
+        body_content = self._serialize.body(cluster, "Cluster")
 
         # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
+        request = self._client.patch(
+            url, query_parameters, header_parameters, body_content
+        )
         response = self._client.send(request, stream=False, **operation_config)
 
         if response.status_code not in [200, 201]:
@@ -316,9 +417,9 @@ class ClustersOperations(object):
         deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Cluster', response)
+            deserialized = self._deserialize("Cluster", response)
         if response.status_code == 201:
-            deserialized = self._deserialize('Cluster', response)
+            deserialized = self._deserialize("Cluster", response)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
@@ -327,7 +428,16 @@ class ClustersOperations(object):
         return deserialized
 
     def update(
-            self, resource_group_name, private_cloud_name, cluster_name, cluster, custom_headers=None, raw=False, polling=True, **operation_config):
+        self,
+        resource_group_name,
+        private_cloud_name,
+        cluster_name,
+        cluster,
+        custom_headers=None,
+        raw=False,
+        polling=True,
+        **operation_config,
+    ):
         """Update a cluster in a private cloud.
 
         :param resource_group_name: Name of the resource group within the
@@ -360,11 +470,11 @@ class ClustersOperations(object):
             cluster=cluster,
             custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **operation_config,
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('Cluster', response)
+            deserialized = self._deserialize("Cluster", response)
 
             if raw:
                 client_raw_response = ClientRawResponse(deserialized, response)
@@ -373,39 +483,63 @@ class ClustersOperations(object):
             return deserialized
 
         lro_delay = operation_config.get(
-            'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
-        if polling is True: polling_method = ARMPolling(lro_delay, **operation_config)
-        elif polling is False: polling_method = NoPolling()
-        else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    update.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}'}
+            "long_running_operation_timeout", self.config.long_running_operation_timeout
+        )
+        if polling is True:
+            polling_method = ARMPolling(lro_delay, **operation_config)
+        elif polling is False:
+            polling_method = NoPolling()
+        else:
+            polling_method = polling
+        return LROPoller(
+            self._client, raw_result, get_long_running_output, polling_method
+        )
 
+    update.metadata = {
+        "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}"
+    }
 
     def _delete_initial(
-            self, resource_group_name, private_cloud_name, cluster_name, custom_headers=None, raw=False, **operation_config):
+        self,
+        resource_group_name,
+        private_cloud_name,
+        cluster_name,
+        custom_headers=None,
+        raw=False,
+        **operation_config,
+    ):
         # Construct URL
-        url = self.delete.metadata['url']
+        url = self.delete.metadata["url"]
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
-            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
-            'privateCloudName': self._serialize.url("private_cloud_name", private_cloud_name, 'str'),
-            'clusterName': self._serialize.url("cluster_name", cluster_name, 'str')
+            "subscriptionId": self._serialize.url(
+                "self.config.subscription_id", self.config.subscription_id, "str"
+            ),
+            "resourceGroupName": self._serialize.url(
+                "resource_group_name", resource_group_name, "str"
+            ),
+            "privateCloudName": self._serialize.url(
+                "private_cloud_name", private_cloud_name, "str"
+            ),
+            "clusterName": self._serialize.url("cluster_name", cluster_name, "str"),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
-        query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
+        query_parameters["api-version"] = self._serialize.query(
+            "self.api_version", self.api_version, "str"
+        )
 
         # Construct headers
         header_parameters = {}
         if self.config.generate_client_request_id:
-            header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+            header_parameters["x-ms-client-request-id"] = str(uuid.uuid1())
         if custom_headers:
             header_parameters.update(custom_headers)
         if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+            header_parameters["accept-language"] = self._serialize.header(
+                "self.config.accept_language", self.config.accept_language, "str"
+            )
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -419,7 +553,15 @@ class ClustersOperations(object):
             return client_raw_response
 
     def delete(
-            self, resource_group_name, private_cloud_name, cluster_name, custom_headers=None, raw=False, polling=True, **operation_config):
+        self,
+        resource_group_name,
+        private_cloud_name,
+        cluster_name,
+        custom_headers=None,
+        raw=False,
+        polling=True,
+        **operation_config,
+    ):
         """Delete a cluster in a private cloud.
 
         :param resource_group_name: Name of the resource group within the
@@ -447,7 +589,7 @@ class ClustersOperations(object):
             cluster_name=cluster_name,
             custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **operation_config,
         )
 
         def get_long_running_output(response):
@@ -456,10 +598,18 @@ class ClustersOperations(object):
                 return client_raw_response
 
         lro_delay = operation_config.get(
-            'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
-        if polling is True: polling_method = ARMPolling(lro_delay, **operation_config)
-        elif polling is False: polling_method = NoPolling()
-        else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    delete.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}'}
+            "long_running_operation_timeout", self.config.long_running_operation_timeout
+        )
+        if polling is True:
+            polling_method = ARMPolling(lro_delay, **operation_config)
+        elif polling is False:
+            polling_method = NoPolling()
+        else:
+            polling_method = polling
+        return LROPoller(
+            self._client, raw_result, get_long_running_output, polling_method
+        )
+
+    delete.metadata = {
+        "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters/{clusterName}"
+    }

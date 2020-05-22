@@ -32,20 +32,19 @@ class AVSClientConfiguration(AzureConfiguration):
     :param str base_url: Service URL
     """
 
-    def __init__(
-            self, credentials, subscription_id, base_url=None):
+    def __init__(self, credentials, subscription_id, base_url=None):
 
         if credentials is None:
             raise ValueError("Parameter 'credentials' must not be None.")
         if subscription_id is None:
             raise ValueError("Parameter 'subscription_id' must not be None.")
         if not base_url:
-            base_url = 'https://management.azure.com'
+            base_url = "https://management.azure.com"
 
         super(AVSClientConfiguration, self).__init__(base_url)
 
-        self.add_user_agent('avsclient/{}'.format(VERSION))
-        self.add_user_agent('Azure-SDK-For-Python')
+        self.add_user_agent("avsclient/{}".format(VERSION))
+        self.add_user_agent("Azure-SDK-For-Python")
 
         self.credentials = credentials
         self.subscription_id = subscription_id
@@ -72,26 +71,31 @@ class AVSClient(SDKClient):
     :param str base_url: Service URL
     """
 
-    def __init__(
-            self, credentials, subscription_id, base_url=None):
+    def __init__(self, credentials, subscription_id, base_url=None):
 
         self.config = AVSClientConfiguration(credentials, subscription_id, base_url)
         super(AVSClient, self).__init__(self.config.credentials, self.config)
 
-        client_models = {k: v for k, v in models.__dict__.items() if isinstance(v, type)}
-        self.api_version = '2019-08-09-preview'
+        client_models = {
+            k: v for k, v in models.__dict__.items() if isinstance(v, type)
+        }
+        self.api_version = "2019-08-09-preview"
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
 
         self.operations = Operations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self.config, self._serialize, self._deserialize
+        )
         self.private_clouds = PrivateCloudsOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self.config, self._serialize, self._deserialize
+        )
         self.clusters = ClustersOperations(
-            self._client, self.config, self._serialize, self._deserialize)
+            self._client, self.config, self._serialize, self._deserialize
+        )
 
     def check_quota_availability(
-            self, location, custom_headers=None, raw=False, **operation_config):
+        self, location, custom_headers=None, raw=False, **operation_config
+    ):
         """Return quota for subscription by region.
 
         :param location: Azure region
@@ -108,26 +112,32 @@ class AVSClient(SDKClient):
          :class:`ApiErrorException<vendored_sdks.models.ApiErrorException>`
         """
         # Construct URL
-        url = self.check_quota_availability.metadata['url']
+        url = self.check_quota_availability.metadata["url"]
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
-            'location': self._serialize.url("location", location, 'str')
+            "subscriptionId": self._serialize.url(
+                "self.config.subscription_id", self.config.subscription_id, "str"
+            ),
+            "location": self._serialize.url("location", location, "str"),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
-        query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
+        query_parameters["api-version"] = self._serialize.query(
+            "self.api_version", self.api_version, "str"
+        )
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Accept'] = 'application/json'
+        header_parameters["Accept"] = "application/json"
         if self.config.generate_client_request_id:
-            header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+            header_parameters["x-ms-client-request-id"] = str(uuid.uuid1())
         if custom_headers:
             header_parameters.update(custom_headers)
         if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+            header_parameters["accept-language"] = self._serialize.header(
+                "self.config.accept_language", self.config.accept_language, "str"
+            )
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -139,11 +149,14 @@ class AVSClient(SDKClient):
         deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('Quota', response)
+            deserialized = self._deserialize("Quota", response)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
             return client_raw_response
 
         return deserialized
-    check_quota_availability.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.AVS/locations/{location}/checkQuotaAvailability'}
+
+    check_quota_availability.metadata = {
+        "url": "/subscriptions/{subscriptionId}/providers/Microsoft.AVS/locations/{location}/checkQuotaAvailability"
+    }

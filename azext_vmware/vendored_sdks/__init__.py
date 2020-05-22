@@ -8,7 +8,6 @@
 from .avs_client import AVSClient
 from .version import VERSION
 
-__all__ = ['AVSClient']
+__all__ = ["AVSClient"]
 
 __version__ = VERSION
-

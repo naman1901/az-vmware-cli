@@ -7,97 +7,135 @@
 from knack.help_files import helps  # pylint: disable=unused-import
 
 
-helps['vmware'] = """
+helps[
+    "vmware"
+] = """
     type: group
     short-summary: Commands to manage Azure VMware Solutions.
 """
 
-helps['vmware private-cloud'] = """
+helps[
+    "vmware private-cloud"
+] = """
     type: group
     short-summary: Commands to manage private clouds.
 """
 
-helps['vmware cluster'] = """
+helps[
+    "vmware cluster"
+] = """
     type: group
     short-summary: Commands to manage clusters in a private cloud.
 """
 
-helps['vmware cluster create'] = """
+helps[
+    "vmware cluster create"
+] = """
     type: command
     short-summary: Create a cluster in a private cloud. The maximum number of clusters is 4.
 """
 
-helps['vmware cluster delete'] = """
+helps[
+    "vmware cluster delete"
+] = """
     type: command
     short-summary: Delete a cluster in a private cloud.
 """
 
-helps['vmware cluster list'] = """
+helps[
+    "vmware cluster list"
+] = """
     type: command
     short-summary: List clusters in a private cloud.
 """
 
-helps['vmware cluster show'] = """
+helps[
+    "vmware cluster show"
+] = """
     type: command
     short-summary: Show details of a cluster in a private cloud.
 """
 
-helps['vmware cluster update'] = """
+helps[
+    "vmware cluster update"
+] = """
     type: command
     short-summary: Update a cluster in a private cloud.
 """
 
-helps['vmware private-cloud addauthorization'] = """
+helps[
+    "vmware private-cloud addauthorization"
+] = """
     type: command
     short-summary: Add an authorization to the ExpressRoute for a private cloud.
 """
 
-helps['vmware private-cloud addidentitysource'] = """
+helps[
+    "vmware private-cloud addidentitysource"
+] = """
     type: command
     short-summary: Add a vCenter Single Sign On Identity Source to a private cloud.
 """
 
-helps['vmware private-cloud create'] = """
+helps[
+    "vmware private-cloud create"
+] = """
     type: command
     short-summary: Create a private cloud.
 """
 
-helps['vmware private-cloud delete'] = """
+helps[
+    "vmware private-cloud delete"
+] = """
     type: command
     short-summary: Delete a private cloud.
 """
 
-helps['vmware private-cloud deleteauthorization'] = """
+helps[
+    "vmware private-cloud deleteauthorization"
+] = """
     type: command
     short-summary: Delete an authorization to the ExpressRoute for a private cloud.
 """
 
-helps['vmware private-cloud deleteidentitysource'] = """
+helps[
+    "vmware private-cloud deleteidentitysource"
+] = """
     type: command
     short-summary: Delete a vCenter Single Sign On Identity Source for a private cloud.
 """
 
-helps['vmware private-cloud list'] = """
+helps[
+    "vmware private-cloud list"
+] = """
     type: command
     short-summary: List the private clouds.
 """
 
-helps['vmware private-cloud listadmincredentials'] = """
+helps[
+    "vmware private-cloud listadmincredentials"
+] = """
     type: command
     short-summary: List the admin credentials for the private cloud.
 """
 
-helps['vmware private-cloud show'] = """
+helps[
+    "vmware private-cloud show"
+] = """
     type: command
     short-summary: Show details of a private cloud.
 """
 
-helps['vmware private-cloud update'] = """
+helps[
+    "vmware private-cloud update"
+] = """
     type: command
     short-summary: Update a private cloud.
 """
 
-helps['vmware checkquotaavailability'] = """
+helps[
+    "vmware checkquotaavailability"
+] = """
     type: command
     short-summary: Return quota for subscription by region.
 """

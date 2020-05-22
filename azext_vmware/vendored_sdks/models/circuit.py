@@ -31,18 +31,24 @@ class Circuit(Model):
     """
 
     _validation = {
-        'primary_subnet': {'readonly': True},
-        'secondary_subnet': {'readonly': True},
-        'express_route_id': {'readonly': True},
-        'express_route_private_peering_id': {'readonly': True},
+        "primary_subnet": {"readonly": True},
+        "secondary_subnet": {"readonly": True},
+        "express_route_id": {"readonly": True},
+        "express_route_private_peering_id": {"readonly": True},
     }
 
     _attribute_map = {
-        'primary_subnet': {'key': 'primarySubnet', 'type': 'str'},
-        'secondary_subnet': {'key': 'secondarySubnet', 'type': 'str'},
-        'express_route_id': {'key': 'expressRouteID', 'type': 'str'},
-        'authorizations': {'key': 'authorizations', 'type': '[ExpressRouteAuthorization]'},
-        'express_route_private_peering_id': {'key': 'expressRoutePrivatePeeringID', 'type': 'str'},
+        "primary_subnet": {"key": "primarySubnet", "type": "str"},
+        "secondary_subnet": {"key": "secondarySubnet", "type": "str"},
+        "express_route_id": {"key": "expressRouteID", "type": "str"},
+        "authorizations": {
+            "key": "authorizations",
+            "type": "[ExpressRouteAuthorization]",
+        },
+        "express_route_private_peering_id": {
+            "key": "expressRoutePrivatePeeringID",
+            "type": "str",
+        },
     }
 
     def __init__(self, **kwargs):
@@ -50,5 +56,5 @@ class Circuit(Model):
         self.primary_subnet = None
         self.secondary_subnet = None
         self.express_route_id = None
-        self.authorizations = kwargs.get('authorizations', None)
+        self.authorizations = kwargs.get("authorizations", None)
         self.express_route_private_peering_id = None

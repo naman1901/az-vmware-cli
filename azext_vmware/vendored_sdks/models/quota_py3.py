@@ -22,12 +22,12 @@ class Quota(Model):
     """
 
     _validation = {
-        'hosts_remaining': {'readonly': True},
+        "hosts_remaining": {"readonly": True},
     }
 
     _attribute_map = {
-        'hosts_remaining': {'key': 'hostsRemaining', 'type': '{int}'},
-        'quota_enabled': {'key': 'quotaEnabled', 'type': 'str'},
+        "hosts_remaining": {"key": "hostsRemaining", "type": "{int}"},
+        "quota_enabled": {"key": "quotaEnabled", "type": "str"},
     }
 
     def __init__(self, *, quota_enabled=None, **kwargs) -> None:

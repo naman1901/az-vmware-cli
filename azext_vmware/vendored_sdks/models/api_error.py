@@ -17,12 +17,12 @@ class ApiError(Model):
     """
 
     _attribute_map = {
-        'error': {'key': 'error', 'type': 'ApiErrorBase'},
+        "error": {"key": "error", "type": "ApiErrorBase"},
     }
 
     def __init__(self, **kwargs):
         super(ApiError, self).__init__(**kwargs)
-        self.error = kwargs.get('error', None)
+        self.error = kwargs.get("error", None)
 
 
 class ApiErrorException(HttpOperationError):
@@ -34,4 +34,6 @@ class ApiErrorException(HttpOperationError):
 
     def __init__(self, deserialize, response, *args):
 
-        super(ApiErrorException, self).__init__(deserialize, response, 'ApiError', *args)
+        super(ApiErrorException, self).__init__(
+            deserialize, response, "ApiError", *args
+        )

@@ -18,11 +18,11 @@ class Sku(Model):
     """
 
     _validation = {
-        'name': {'required': True},
+        "name": {"required": True},
     }
 
     _attribute_map = {
-        'name': {'key': 'name', 'type': 'str'},
+        "name": {"key": "name", "type": "str"},
     }
 
     def __init__(self, *, name: str, **kwargs) -> None:

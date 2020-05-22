@@ -25,17 +25,17 @@ class AdminCredentials(Model):
     """
 
     _validation = {
-        'nsxt_username': {'readonly': True},
-        'nsxt_password': {'readonly': True},
-        'vcenter_username': {'readonly': True},
-        'vcenter_password': {'readonly': True},
+        "nsxt_username": {"readonly": True},
+        "nsxt_password": {"readonly": True},
+        "vcenter_username": {"readonly": True},
+        "vcenter_password": {"readonly": True},
     }
 
     _attribute_map = {
-        'nsxt_username': {'key': 'nsxtUsername', 'type': 'str'},
-        'nsxt_password': {'key': 'nsxtPassword', 'type': 'str'},
-        'vcenter_username': {'key': 'vcenterUsername', 'type': 'str'},
-        'vcenter_password': {'key': 'vcenterPassword', 'type': 'str'},
+        "nsxt_username": {"key": "nsxtUsername", "type": "str"},
+        "nsxt_password": {"key": "nsxtPassword", "type": "str"},
+        "vcenter_username": {"key": "vcenterUsername", "type": "str"},
+        "vcenter_password": {"key": "vcenterPassword", "type": "str"},
     }
 
     def __init__(self, **kwargs):

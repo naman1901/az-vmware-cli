@@ -32,8 +32,7 @@ class Operations(object):
 
         self.config = config
 
-    def list(
-            self, custom_headers=None, raw=False, **operation_config):
+    def list(self, custom_headers=None, raw=False, **operation_config):
         """Lists all of the available operations.
 
         :param dict custom_headers: headers that will be added to the request
@@ -47,15 +46,18 @@ class Operations(object):
         :raises:
          :class:`ApiErrorException<vendored_sdks.models.ApiErrorException>`
         """
+
         def internal_paging(next_link=None, raw=False):
 
             if not next_link:
                 # Construct URL
-                url = self.list.metadata['url']
+                url = self.list.metadata["url"]
 
                 # Construct parameters
                 query_parameters = {}
-                query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
+                query_parameters["api-version"] = self._serialize.query(
+                    "self.api_version", self.api_version, "str"
+                )
 
             else:
                 url = next_link
@@ -63,13 +65,15 @@ class Operations(object):
 
             # Construct headers
             header_parameters = {}
-            header_parameters['Accept'] = 'application/json'
+            header_parameters["Accept"] = "application/json"
             if self.config.generate_client_request_id:
-                header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+                header_parameters["x-ms-client-request-id"] = str(uuid.uuid1())
             if custom_headers:
                 header_parameters.update(custom_headers)
             if self.config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+                header_parameters["accept-language"] = self._serialize.header(
+                    "self.config.accept_language", self.config.accept_language, "str"
+                )
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -81,12 +85,17 @@ class Operations(object):
             return response
 
         # Deserialize response
-        deserialized = models.OperationPaged(internal_paging, self._deserialize.dependencies)
+        deserialized = models.OperationPaged(
+            internal_paging, self._deserialize.dependencies
+        )
 
         if raw:
             header_dict = {}
-            client_raw_response = models.OperationPaged(internal_paging, self._deserialize.dependencies, header_dict)
+            client_raw_response = models.OperationPaged(
+                internal_paging, self._deserialize.dependencies, header_dict
+            )
             return client_raw_response
 
         return deserialized
-    list.metadata = {'url': '/providers/Microsoft.AVS/operations'}
+
+    list.metadata = {"url": "/providers/Microsoft.AVS/operations"}

@@ -14,8 +14,8 @@ class ClusterPaged(Paged):
     """
 
     _attribute_map = {
-        'next_link': {'key': 'nextLink', 'type': 'str'},
-        'current_page': {'key': 'value', 'type': '[Cluster]'}
+        "next_link": {"key": "nextLink", "type": "str"},
+        "current_page": {"key": "value", "type": "[Cluster]"},
     }
 
     def __init__(self, *args, **kwargs):

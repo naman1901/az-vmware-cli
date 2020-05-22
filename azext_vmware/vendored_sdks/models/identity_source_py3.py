@@ -37,19 +37,33 @@ class IdentitySource(Model):
     """
 
     _attribute_map = {
-        'name': {'key': 'name', 'type': 'str'},
-        'alias': {'key': 'alias', 'type': 'str'},
-        'domain': {'key': 'domain', 'type': 'str'},
-        'base_user_dn': {'key': 'baseUserDN', 'type': 'str'},
-        'base_group_dn': {'key': 'baseGroupDN', 'type': 'str'},
-        'primary_server': {'key': 'primaryServer', 'type': 'str'},
-        'secondary_server': {'key': 'secondaryServer', 'type': 'str'},
-        'ssl': {'key': 'ssl', 'type': 'str'},
-        'username': {'key': 'username', 'type': 'str'},
-        'password': {'key': 'password', 'type': 'str'},
+        "name": {"key": "name", "type": "str"},
+        "alias": {"key": "alias", "type": "str"},
+        "domain": {"key": "domain", "type": "str"},
+        "base_user_dn": {"key": "baseUserDN", "type": "str"},
+        "base_group_dn": {"key": "baseGroupDN", "type": "str"},
+        "primary_server": {"key": "primaryServer", "type": "str"},
+        "secondary_server": {"key": "secondaryServer", "type": "str"},
+        "ssl": {"key": "ssl", "type": "str"},
+        "username": {"key": "username", "type": "str"},
+        "password": {"key": "password", "type": "str"},
     }
 
-    def __init__(self, *, name: str=None, alias: str=None, domain: str=None, base_user_dn: str=None, base_group_dn: str=None, primary_server: str=None, secondary_server: str=None, ssl=None, username: str=None, password: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        name: str = None,
+        alias: str = None,
+        domain: str = None,
+        base_user_dn: str = None,
+        base_group_dn: str = None,
+        primary_server: str = None,
+        secondary_server: str = None,
+        ssl=None,
+        username: str = None,
+        password: str = None,
+        **kwargs,
+    ) -> None:
         super(IdentitySource, self).__init__(**kwargs)
         self.name = name
         self.alias = alias

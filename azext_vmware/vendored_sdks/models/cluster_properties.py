@@ -27,16 +27,16 @@ class ClusterProperties(DefaultClusterProperties):
     """
 
     _validation = {
-        'cluster_id': {'readonly': True},
-        'hosts': {'readonly': True},
-        'provisioning_state': {'readonly': True},
+        "cluster_id": {"readonly": True},
+        "hosts": {"readonly": True},
+        "provisioning_state": {"readonly": True},
     }
 
     _attribute_map = {
-        'cluster_id': {'key': 'clusterId', 'type': 'int'},
-        'cluster_size': {'key': 'clusterSize', 'type': 'int'},
-        'hosts': {'key': 'hosts', 'type': '[str]'},
-        'provisioning_state': {'key': 'provisioningState', 'type': 'str'},
+        "cluster_id": {"key": "clusterId", "type": "int"},
+        "cluster_size": {"key": "clusterSize", "type": "int"},
+        "hosts": {"key": "hosts", "type": "[str]"},
+        "provisioning_state": {"key": "provisioningState", "type": "str"},
     }
 
     def __init__(self, **kwargs):

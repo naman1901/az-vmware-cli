@@ -23,18 +23,18 @@ class ExpressRouteAuthorization(Model):
     """
 
     _validation = {
-        'id': {'readonly': True},
-        'key': {'readonly': True},
+        "id": {"readonly": True},
+        "key": {"readonly": True},
     }
 
     _attribute_map = {
-        'name': {'key': 'name', 'type': 'str'},
-        'id': {'key': 'id', 'type': 'str'},
-        'key': {'key': 'key', 'type': 'str'},
+        "name": {"key": "name", "type": "str"},
+        "id": {"key": "id", "type": "str"},
+        "key": {"key": "key", "type": "str"},
     }
 
     def __init__(self, **kwargs):
         super(ExpressRouteAuthorization, self).__init__(**kwargs)
-        self.name = kwargs.get('name', None)
+        self.name = kwargs.get("name", None)
         self.id = None
         self.key = None

@@ -35,7 +35,8 @@ class PrivateCloudsOperations(object):
         self.config = config
 
     def list(
-            self, resource_group_name, custom_headers=None, raw=False, **operation_config):
+        self, resource_group_name, custom_headers=None, raw=False, **operation_config
+    ):
         """List private clouds in a resource group.
 
         :param resource_group_name: Name of the resource group within the
@@ -52,20 +53,29 @@ class PrivateCloudsOperations(object):
         :raises:
          :class:`ApiErrorException<vendored_sdks.models.ApiErrorException>`
         """
+
         def internal_paging(next_link=None, raw=False):
 
             if not next_link:
                 # Construct URL
-                url = self.list.metadata['url']
+                url = self.list.metadata["url"]
                 path_format_arguments = {
-                    'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
-                    'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str')
+                    "subscriptionId": self._serialize.url(
+                        "self.config.subscription_id",
+                        self.config.subscription_id,
+                        "str",
+                    ),
+                    "resourceGroupName": self._serialize.url(
+                        "resource_group_name", resource_group_name, "str"
+                    ),
                 }
                 url = self._client.format_url(url, **path_format_arguments)
 
                 # Construct parameters
                 query_parameters = {}
-                query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
+                query_parameters["api-version"] = self._serialize.query(
+                    "self.api_version", self.api_version, "str"
+                )
 
             else:
                 url = next_link
@@ -73,13 +83,15 @@ class PrivateCloudsOperations(object):
 
             # Construct headers
             header_parameters = {}
-            header_parameters['Accept'] = 'application/json'
+            header_parameters["Accept"] = "application/json"
             if self.config.generate_client_request_id:
-                header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+                header_parameters["x-ms-client-request-id"] = str(uuid.uuid1())
             if custom_headers:
                 header_parameters.update(custom_headers)
             if self.config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+                header_parameters["accept-language"] = self._serialize.header(
+                    "self.config.accept_language", self.config.accept_language, "str"
+                )
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -91,18 +103,24 @@ class PrivateCloudsOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.PrivateCloudPaged(internal_paging, self._deserialize.dependencies)
+        deserialized = models.PrivateCloudPaged(
+            internal_paging, self._deserialize.dependencies
+        )
 
         if raw:
             header_dict = {}
-            client_raw_response = models.PrivateCloudPaged(internal_paging, self._deserialize.dependencies, header_dict)
+            client_raw_response = models.PrivateCloudPaged(
+                internal_paging, self._deserialize.dependencies, header_dict
+            )
             return client_raw_response
 
         return deserialized
-    list.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds'}
 
-    def list_in_subscription(
-            self, custom_headers=None, raw=False, **operation_config):
+    list.metadata = {
+        "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds"
+    }
+
+    def list_in_subscription(self, custom_headers=None, raw=False, **operation_config):
         """List private clouds in a subscription.
 
         :param dict custom_headers: headers that will be added to the request
@@ -116,19 +134,26 @@ class PrivateCloudsOperations(object):
         :raises:
          :class:`ApiErrorException<vendored_sdks.models.ApiErrorException>`
         """
+
         def internal_paging(next_link=None, raw=False):
 
             if not next_link:
                 # Construct URL
-                url = self.list_in_subscription.metadata['url']
+                url = self.list_in_subscription.metadata["url"]
                 path_format_arguments = {
-                    'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str')
+                    "subscriptionId": self._serialize.url(
+                        "self.config.subscription_id",
+                        self.config.subscription_id,
+                        "str",
+                    )
                 }
                 url = self._client.format_url(url, **path_format_arguments)
 
                 # Construct parameters
                 query_parameters = {}
-                query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
+                query_parameters["api-version"] = self._serialize.query(
+                    "self.api_version", self.api_version, "str"
+                )
 
             else:
                 url = next_link
@@ -136,13 +161,15 @@ class PrivateCloudsOperations(object):
 
             # Construct headers
             header_parameters = {}
-            header_parameters['Accept'] = 'application/json'
+            header_parameters["Accept"] = "application/json"
             if self.config.generate_client_request_id:
-                header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+                header_parameters["x-ms-client-request-id"] = str(uuid.uuid1())
             if custom_headers:
                 header_parameters.update(custom_headers)
             if self.config.accept_language is not None:
-                header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+                header_parameters["accept-language"] = self._serialize.header(
+                    "self.config.accept_language", self.config.accept_language, "str"
+                )
 
             # Construct and send request
             request = self._client.get(url, query_parameters, header_parameters)
@@ -154,18 +181,31 @@ class PrivateCloudsOperations(object):
             return response
 
         # Deserialize response
-        deserialized = models.PrivateCloudPaged(internal_paging, self._deserialize.dependencies)
+        deserialized = models.PrivateCloudPaged(
+            internal_paging, self._deserialize.dependencies
+        )
 
         if raw:
             header_dict = {}
-            client_raw_response = models.PrivateCloudPaged(internal_paging, self._deserialize.dependencies, header_dict)
+            client_raw_response = models.PrivateCloudPaged(
+                internal_paging, self._deserialize.dependencies, header_dict
+            )
             return client_raw_response
 
         return deserialized
-    list_in_subscription.metadata = {'url': '/subscriptions/{subscriptionId}/providers/Microsoft.AVS/privateClouds'}
+
+    list_in_subscription.metadata = {
+        "url": "/subscriptions/{subscriptionId}/providers/Microsoft.AVS/privateClouds"
+    }
 
     def get(
-            self, resource_group_name, private_cloud_name, custom_headers=None, raw=False, **operation_config):
+        self,
+        resource_group_name,
+        private_cloud_name,
+        custom_headers=None,
+        raw=False,
+        **operation_config,
+    ):
         """Get a private cloud.
 
         :param resource_group_name: Name of the resource group within the
@@ -185,27 +225,37 @@ class PrivateCloudsOperations(object):
          :class:`ApiErrorException<vendored_sdks.models.ApiErrorException>`
         """
         # Construct URL
-        url = self.get.metadata['url']
+        url = self.get.metadata["url"]
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
-            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
-            'privateCloudName': self._serialize.url("private_cloud_name", private_cloud_name, 'str')
+            "subscriptionId": self._serialize.url(
+                "self.config.subscription_id", self.config.subscription_id, "str"
+            ),
+            "resourceGroupName": self._serialize.url(
+                "resource_group_name", resource_group_name, "str"
+            ),
+            "privateCloudName": self._serialize.url(
+                "private_cloud_name", private_cloud_name, "str"
+            ),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
-        query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
+        query_parameters["api-version"] = self._serialize.query(
+            "self.api_version", self.api_version, "str"
+        )
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Accept'] = 'application/json'
+        header_parameters["Accept"] = "application/json"
         if self.config.generate_client_request_id:
-            header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+            header_parameters["x-ms-client-request-id"] = str(uuid.uuid1())
         if custom_headers:
             header_parameters.update(custom_headers)
         if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+            header_parameters["accept-language"] = self._serialize.header(
+                "self.config.accept_language", self.config.accept_language, "str"
+            )
 
         # Construct and send request
         request = self._client.get(url, query_parameters, header_parameters)
@@ -217,47 +267,68 @@ class PrivateCloudsOperations(object):
         deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('PrivateCloud', response)
+            deserialized = self._deserialize("PrivateCloud", response)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
             return client_raw_response
 
         return deserialized
-    get.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}'}
 
+    get.metadata = {
+        "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}"
+    }
 
     def _create_or_update_initial(
-            self, resource_group_name, private_cloud_name, private_cloud, custom_headers=None, raw=False, **operation_config):
+        self,
+        resource_group_name,
+        private_cloud_name,
+        private_cloud,
+        custom_headers=None,
+        raw=False,
+        **operation_config,
+    ):
         # Construct URL
-        url = self.create_or_update.metadata['url']
+        url = self.create_or_update.metadata["url"]
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
-            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
-            'privateCloudName': self._serialize.url("private_cloud_name", private_cloud_name, 'str')
+            "subscriptionId": self._serialize.url(
+                "self.config.subscription_id", self.config.subscription_id, "str"
+            ),
+            "resourceGroupName": self._serialize.url(
+                "resource_group_name", resource_group_name, "str"
+            ),
+            "privateCloudName": self._serialize.url(
+                "private_cloud_name", private_cloud_name, "str"
+            ),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
-        query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
+        query_parameters["api-version"] = self._serialize.query(
+            "self.api_version", self.api_version, "str"
+        )
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        header_parameters["Accept"] = "application/json"
+        header_parameters["Content-Type"] = "application/json; charset=utf-8"
         if self.config.generate_client_request_id:
-            header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+            header_parameters["x-ms-client-request-id"] = str(uuid.uuid1())
         if custom_headers:
             header_parameters.update(custom_headers)
         if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+            header_parameters["accept-language"] = self._serialize.header(
+                "self.config.accept_language", self.config.accept_language, "str"
+            )
 
         # Construct body
-        body_content = self._serialize.body(private_cloud, 'PrivateCloud')
+        body_content = self._serialize.body(private_cloud, "PrivateCloud")
 
         # Construct and send request
-        request = self._client.put(url, query_parameters, header_parameters, body_content)
+        request = self._client.put(
+            url, query_parameters, header_parameters, body_content
+        )
         response = self._client.send(request, stream=False, **operation_config)
 
         if response.status_code not in [200, 201]:
@@ -266,9 +337,9 @@ class PrivateCloudsOperations(object):
         deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('PrivateCloud', response)
+            deserialized = self._deserialize("PrivateCloud", response)
         if response.status_code == 201:
-            deserialized = self._deserialize('PrivateCloud', response)
+            deserialized = self._deserialize("PrivateCloud", response)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
@@ -277,7 +348,15 @@ class PrivateCloudsOperations(object):
         return deserialized
 
     def create_or_update(
-            self, resource_group_name, private_cloud_name, private_cloud, custom_headers=None, raw=False, polling=True, **operation_config):
+        self,
+        resource_group_name,
+        private_cloud_name,
+        private_cloud,
+        custom_headers=None,
+        raw=False,
+        polling=True,
+        **operation_config,
+    ):
         """Create or update a private cloud.
 
         :param resource_group_name: Name of the resource group within the
@@ -307,11 +386,11 @@ class PrivateCloudsOperations(object):
             private_cloud=private_cloud,
             custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **operation_config,
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('PrivateCloud', response)
+            deserialized = self._deserialize("PrivateCloud", response)
 
             if raw:
                 client_raw_response = ClientRawResponse(deserialized, response)
@@ -320,46 +399,72 @@ class PrivateCloudsOperations(object):
             return deserialized
 
         lro_delay = operation_config.get(
-            'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
-        if polling is True: polling_method = ARMPolling(lro_delay, **operation_config)
-        elif polling is False: polling_method = NoPolling()
-        else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    create_or_update.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}'}
+            "long_running_operation_timeout", self.config.long_running_operation_timeout
+        )
+        if polling is True:
+            polling_method = ARMPolling(lro_delay, **operation_config)
+        elif polling is False:
+            polling_method = NoPolling()
+        else:
+            polling_method = polling
+        return LROPoller(
+            self._client, raw_result, get_long_running_output, polling_method
+        )
 
+    create_or_update.metadata = {
+        "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}"
+    }
 
     def _update_initial(
-            self, resource_group_name, private_cloud_name, private_cloud, custom_headers=None, raw=False, **operation_config):
+        self,
+        resource_group_name,
+        private_cloud_name,
+        private_cloud,
+        custom_headers=None,
+        raw=False,
+        **operation_config,
+    ):
         # Construct URL
-        url = self.update.metadata['url']
+        url = self.update.metadata["url"]
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
-            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
-            'privateCloudName': self._serialize.url("private_cloud_name", private_cloud_name, 'str')
+            "subscriptionId": self._serialize.url(
+                "self.config.subscription_id", self.config.subscription_id, "str"
+            ),
+            "resourceGroupName": self._serialize.url(
+                "resource_group_name", resource_group_name, "str"
+            ),
+            "privateCloudName": self._serialize.url(
+                "private_cloud_name", private_cloud_name, "str"
+            ),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
-        query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
+        query_parameters["api-version"] = self._serialize.query(
+            "self.api_version", self.api_version, "str"
+        )
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Accept'] = 'application/json'
-        header_parameters['Content-Type'] = 'application/json; charset=utf-8'
+        header_parameters["Accept"] = "application/json"
+        header_parameters["Content-Type"] = "application/json; charset=utf-8"
         if self.config.generate_client_request_id:
-            header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+            header_parameters["x-ms-client-request-id"] = str(uuid.uuid1())
         if custom_headers:
             header_parameters.update(custom_headers)
         if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+            header_parameters["accept-language"] = self._serialize.header(
+                "self.config.accept_language", self.config.accept_language, "str"
+            )
 
         # Construct body
-        body_content = self._serialize.body(private_cloud, 'PrivateCloud')
+        body_content = self._serialize.body(private_cloud, "PrivateCloud")
 
         # Construct and send request
-        request = self._client.patch(url, query_parameters, header_parameters, body_content)
+        request = self._client.patch(
+            url, query_parameters, header_parameters, body_content
+        )
         response = self._client.send(request, stream=False, **operation_config)
 
         if response.status_code not in [200, 201]:
@@ -368,9 +473,9 @@ class PrivateCloudsOperations(object):
         deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('PrivateCloud', response)
+            deserialized = self._deserialize("PrivateCloud", response)
         if response.status_code == 201:
-            deserialized = self._deserialize('PrivateCloud', response)
+            deserialized = self._deserialize("PrivateCloud", response)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
@@ -379,7 +484,15 @@ class PrivateCloudsOperations(object):
         return deserialized
 
     def update(
-            self, resource_group_name, private_cloud_name, private_cloud, custom_headers=None, raw=False, polling=True, **operation_config):
+        self,
+        resource_group_name,
+        private_cloud_name,
+        private_cloud,
+        custom_headers=None,
+        raw=False,
+        polling=True,
+        **operation_config,
+    ):
         """Update a private cloud.
 
         :param resource_group_name: Name of the resource group within the
@@ -409,11 +522,11 @@ class PrivateCloudsOperations(object):
             private_cloud=private_cloud,
             custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **operation_config,
         )
 
         def get_long_running_output(response):
-            deserialized = self._deserialize('PrivateCloud', response)
+            deserialized = self._deserialize("PrivateCloud", response)
 
             if raw:
                 client_raw_response = ClientRawResponse(deserialized, response)
@@ -422,38 +535,61 @@ class PrivateCloudsOperations(object):
             return deserialized
 
         lro_delay = operation_config.get(
-            'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
-        if polling is True: polling_method = ARMPolling(lro_delay, **operation_config)
-        elif polling is False: polling_method = NoPolling()
-        else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    update.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}'}
+            "long_running_operation_timeout", self.config.long_running_operation_timeout
+        )
+        if polling is True:
+            polling_method = ARMPolling(lro_delay, **operation_config)
+        elif polling is False:
+            polling_method = NoPolling()
+        else:
+            polling_method = polling
+        return LROPoller(
+            self._client, raw_result, get_long_running_output, polling_method
+        )
 
+    update.metadata = {
+        "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}"
+    }
 
     def _delete_initial(
-            self, resource_group_name, private_cloud_name, custom_headers=None, raw=False, **operation_config):
+        self,
+        resource_group_name,
+        private_cloud_name,
+        custom_headers=None,
+        raw=False,
+        **operation_config,
+    ):
         # Construct URL
-        url = self.delete.metadata['url']
+        url = self.delete.metadata["url"]
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
-            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
-            'privateCloudName': self._serialize.url("private_cloud_name", private_cloud_name, 'str')
+            "subscriptionId": self._serialize.url(
+                "self.config.subscription_id", self.config.subscription_id, "str"
+            ),
+            "resourceGroupName": self._serialize.url(
+                "resource_group_name", resource_group_name, "str"
+            ),
+            "privateCloudName": self._serialize.url(
+                "private_cloud_name", private_cloud_name, "str"
+            ),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
-        query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
+        query_parameters["api-version"] = self._serialize.query(
+            "self.api_version", self.api_version, "str"
+        )
 
         # Construct headers
         header_parameters = {}
         if self.config.generate_client_request_id:
-            header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+            header_parameters["x-ms-client-request-id"] = str(uuid.uuid1())
         if custom_headers:
             header_parameters.update(custom_headers)
         if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+            header_parameters["accept-language"] = self._serialize.header(
+                "self.config.accept_language", self.config.accept_language, "str"
+            )
 
         # Construct and send request
         request = self._client.delete(url, query_parameters, header_parameters)
@@ -467,7 +603,14 @@ class PrivateCloudsOperations(object):
             return client_raw_response
 
     def delete(
-            self, resource_group_name, private_cloud_name, custom_headers=None, raw=False, polling=True, **operation_config):
+        self,
+        resource_group_name,
+        private_cloud_name,
+        custom_headers=None,
+        raw=False,
+        polling=True,
+        **operation_config,
+    ):
         """Delete a private cloud.
 
         :param resource_group_name: Name of the resource group within the
@@ -492,7 +635,7 @@ class PrivateCloudsOperations(object):
             private_cloud_name=private_cloud_name,
             custom_headers=custom_headers,
             raw=True,
-            **operation_config
+            **operation_config,
         )
 
         def get_long_running_output(response):
@@ -501,16 +644,30 @@ class PrivateCloudsOperations(object):
                 return client_raw_response
 
         lro_delay = operation_config.get(
-            'long_running_operation_timeout',
-            self.config.long_running_operation_timeout)
-        if polling is True: polling_method = ARMPolling(lro_delay, **operation_config)
-        elif polling is False: polling_method = NoPolling()
-        else: polling_method = polling
-        return LROPoller(self._client, raw_result, get_long_running_output, polling_method)
-    delete.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}'}
+            "long_running_operation_timeout", self.config.long_running_operation_timeout
+        )
+        if polling is True:
+            polling_method = ARMPolling(lro_delay, **operation_config)
+        elif polling is False:
+            polling_method = NoPolling()
+        else:
+            polling_method = polling
+        return LROPoller(
+            self._client, raw_result, get_long_running_output, polling_method
+        )
+
+    delete.metadata = {
+        "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}"
+    }
 
     def list_admin_credentials(
-            self, resource_group_name, private_cloud_name, custom_headers=None, raw=False, **operation_config):
+        self,
+        resource_group_name,
+        private_cloud_name,
+        custom_headers=None,
+        raw=False,
+        **operation_config,
+    ):
         """List the admin credentials for the private cloud.
 
         :param resource_group_name: Name of the resource group within the
@@ -530,27 +687,37 @@ class PrivateCloudsOperations(object):
          :class:`ApiErrorException<vendored_sdks.models.ApiErrorException>`
         """
         # Construct URL
-        url = self.list_admin_credentials.metadata['url']
+        url = self.list_admin_credentials.metadata["url"]
         path_format_arguments = {
-            'subscriptionId': self._serialize.url("self.config.subscription_id", self.config.subscription_id, 'str'),
-            'resourceGroupName': self._serialize.url("resource_group_name", resource_group_name, 'str'),
-            'privateCloudName': self._serialize.url("private_cloud_name", private_cloud_name, 'str')
+            "subscriptionId": self._serialize.url(
+                "self.config.subscription_id", self.config.subscription_id, "str"
+            ),
+            "resourceGroupName": self._serialize.url(
+                "resource_group_name", resource_group_name, "str"
+            ),
+            "privateCloudName": self._serialize.url(
+                "private_cloud_name", private_cloud_name, "str"
+            ),
         }
         url = self._client.format_url(url, **path_format_arguments)
 
         # Construct parameters
         query_parameters = {}
-        query_parameters['api-version'] = self._serialize.query("self.api_version", self.api_version, 'str')
+        query_parameters["api-version"] = self._serialize.query(
+            "self.api_version", self.api_version, "str"
+        )
 
         # Construct headers
         header_parameters = {}
-        header_parameters['Accept'] = 'application/json'
+        header_parameters["Accept"] = "application/json"
         if self.config.generate_client_request_id:
-            header_parameters['x-ms-client-request-id'] = str(uuid.uuid1())
+            header_parameters["x-ms-client-request-id"] = str(uuid.uuid1())
         if custom_headers:
             header_parameters.update(custom_headers)
         if self.config.accept_language is not None:
-            header_parameters['accept-language'] = self._serialize.header("self.config.accept_language", self.config.accept_language, 'str')
+            header_parameters["accept-language"] = self._serialize.header(
+                "self.config.accept_language", self.config.accept_language, "str"
+            )
 
         # Construct and send request
         request = self._client.post(url, query_parameters, header_parameters)
@@ -562,11 +729,14 @@ class PrivateCloudsOperations(object):
         deserialized = None
 
         if response.status_code == 200:
-            deserialized = self._deserialize('AdminCredentials', response)
+            deserialized = self._deserialize("AdminCredentials", response)
 
         if raw:
             client_raw_response = ClientRawResponse(deserialized, response)
             return client_raw_response
 
         return deserialized
-    list_admin_credentials.metadata = {'url': '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/listAdminCredentials'}
+
+    list_admin_credentials.metadata = {
+        "url": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/listAdminCredentials"
+    }

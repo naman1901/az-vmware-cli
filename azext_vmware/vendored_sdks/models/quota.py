@@ -22,15 +22,15 @@ class Quota(Model):
     """
 
     _validation = {
-        'hosts_remaining': {'readonly': True},
+        "hosts_remaining": {"readonly": True},
     }
 
     _attribute_map = {
-        'hosts_remaining': {'key': 'hostsRemaining', 'type': '{int}'},
-        'quota_enabled': {'key': 'quotaEnabled', 'type': 'str'},
+        "hosts_remaining": {"key": "hostsRemaining", "type": "{int}"},
+        "quota_enabled": {"key": "quotaEnabled", "type": "str"},
     }
 
     def __init__(self, **kwargs):
         super(Quota, self).__init__(**kwargs)
         self.hosts_remaining = None
-        self.quota_enabled = kwargs.get('quota_enabled', None)
+        self.quota_enabled = kwargs.get("quota_enabled", None)

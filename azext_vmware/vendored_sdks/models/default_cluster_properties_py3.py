@@ -23,17 +23,17 @@ class DefaultClusterProperties(Model):
     """
 
     _validation = {
-        'cluster_id': {'readonly': True},
-        'hosts': {'readonly': True},
+        "cluster_id": {"readonly": True},
+        "hosts": {"readonly": True},
     }
 
     _attribute_map = {
-        'cluster_id': {'key': 'clusterId', 'type': 'int'},
-        'cluster_size': {'key': 'clusterSize', 'type': 'int'},
-        'hosts': {'key': 'hosts', 'type': '[str]'},
+        "cluster_id": {"key": "clusterId", "type": "int"},
+        "cluster_size": {"key": "clusterSize", "type": "int"},
+        "hosts": {"key": "hosts", "type": "[str]"},
     }
 
-    def __init__(self, *, cluster_size: int=None, **kwargs) -> None:
+    def __init__(self, *, cluster_size: int = None, **kwargs) -> None:
         super(DefaultClusterProperties, self).__init__(**kwargs)
         self.cluster_id = None
         self.cluster_size = cluster_size

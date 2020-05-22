@@ -37,27 +37,27 @@ class IdentitySource(Model):
     """
 
     _attribute_map = {
-        'name': {'key': 'name', 'type': 'str'},
-        'alias': {'key': 'alias', 'type': 'str'},
-        'domain': {'key': 'domain', 'type': 'str'},
-        'base_user_dn': {'key': 'baseUserDN', 'type': 'str'},
-        'base_group_dn': {'key': 'baseGroupDN', 'type': 'str'},
-        'primary_server': {'key': 'primaryServer', 'type': 'str'},
-        'secondary_server': {'key': 'secondaryServer', 'type': 'str'},
-        'ssl': {'key': 'ssl', 'type': 'str'},
-        'username': {'key': 'username', 'type': 'str'},
-        'password': {'key': 'password', 'type': 'str'},
+        "name": {"key": "name", "type": "str"},
+        "alias": {"key": "alias", "type": "str"},
+        "domain": {"key": "domain", "type": "str"},
+        "base_user_dn": {"key": "baseUserDN", "type": "str"},
+        "base_group_dn": {"key": "baseGroupDN", "type": "str"},
+        "primary_server": {"key": "primaryServer", "type": "str"},
+        "secondary_server": {"key": "secondaryServer", "type": "str"},
+        "ssl": {"key": "ssl", "type": "str"},
+        "username": {"key": "username", "type": "str"},
+        "password": {"key": "password", "type": "str"},
     }
 
     def __init__(self, **kwargs):
         super(IdentitySource, self).__init__(**kwargs)
-        self.name = kwargs.get('name', None)
-        self.alias = kwargs.get('alias', None)
-        self.domain = kwargs.get('domain', None)
-        self.base_user_dn = kwargs.get('base_user_dn', None)
-        self.base_group_dn = kwargs.get('base_group_dn', None)
-        self.primary_server = kwargs.get('primary_server', None)
-        self.secondary_server = kwargs.get('secondary_server', None)
-        self.ssl = kwargs.get('ssl', None)
-        self.username = kwargs.get('username', None)
-        self.password = kwargs.get('password', None)
+        self.name = kwargs.get("name", None)
+        self.alias = kwargs.get("alias", None)
+        self.domain = kwargs.get("domain", None)
+        self.base_user_dn = kwargs.get("base_user_dn", None)
+        self.base_group_dn = kwargs.get("base_group_dn", None)
+        self.primary_server = kwargs.get("primary_server", None)
+        self.secondary_server = kwargs.get("secondary_server", None)
+        self.ssl = kwargs.get("ssl", None)
+        self.username = kwargs.get("username", None)
+        self.password = kwargs.get("password", None)

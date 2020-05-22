@@ -21,13 +21,13 @@ class Endpoints(Model):
     """
 
     _validation = {
-        'nsxt_manager': {'readonly': True},
-        'vcsa': {'readonly': True},
+        "nsxt_manager": {"readonly": True},
+        "vcsa": {"readonly": True},
     }
 
     _attribute_map = {
-        'nsxt_manager': {'key': 'nsxtManager', 'type': 'str'},
-        'vcsa': {'key': 'vcsa', 'type': 'str'},
+        "nsxt_manager": {"key": "nsxtManager", "type": "str"},
+        "vcsa": {"key": "vcsa", "type": "str"},
     }
 
     def __init__(self, **kwargs):

@@ -59,35 +59,52 @@ class PrivateCloudProperties(Model):
     """
 
     _validation = {
-        'provisioning_state': {'readonly': True},
-        'clusters': {'readonly': True},
-        'endpoints': {'readonly': True},
-        'management_network': {'readonly': True},
-        'provisioning_network': {'readonly': True},
-        'vmotion_network': {'readonly': True},
-        'vcenter_certificate_thumbprint': {'readonly': True},
-        'nsxt_certificate_thumbprint': {'readonly': True},
+        "provisioning_state": {"readonly": True},
+        "clusters": {"readonly": True},
+        "endpoints": {"readonly": True},
+        "management_network": {"readonly": True},
+        "provisioning_network": {"readonly": True},
+        "vmotion_network": {"readonly": True},
+        "vcenter_certificate_thumbprint": {"readonly": True},
+        "nsxt_certificate_thumbprint": {"readonly": True},
     }
 
     _attribute_map = {
-        'provisioning_state': {'key': 'provisioningState', 'type': 'str'},
-        'circuit': {'key': 'circuit', 'type': 'Circuit'},
-        'cluster': {'key': 'cluster', 'type': 'DefaultClusterProperties'},
-        'clusters': {'key': 'clusters', 'type': '[str]'},
-        'endpoints': {'key': 'endpoints', 'type': 'Endpoints'},
-        'internet': {'key': 'internet', 'type': 'str'},
-        'identity_sources': {'key': 'identitySources', 'type': '[IdentitySource]'},
-        'network_block': {'key': 'networkBlock', 'type': 'str'},
-        'management_network': {'key': 'managementNetwork', 'type': 'str'},
-        'provisioning_network': {'key': 'provisioningNetwork', 'type': 'str'},
-        'vmotion_network': {'key': 'vmotionNetwork', 'type': 'str'},
-        'vcenter_password': {'key': 'vcenterPassword', 'type': 'str'},
-        'nsxt_password': {'key': 'nsxtPassword', 'type': 'str'},
-        'vcenter_certificate_thumbprint': {'key': 'vcenterCertificateThumbprint', 'type': 'str'},
-        'nsxt_certificate_thumbprint': {'key': 'nsxtCertificateThumbprint', 'type': 'str'},
+        "provisioning_state": {"key": "provisioningState", "type": "str"},
+        "circuit": {"key": "circuit", "type": "Circuit"},
+        "cluster": {"key": "cluster", "type": "DefaultClusterProperties"},
+        "clusters": {"key": "clusters", "type": "[str]"},
+        "endpoints": {"key": "endpoints", "type": "Endpoints"},
+        "internet": {"key": "internet", "type": "str"},
+        "identity_sources": {"key": "identitySources", "type": "[IdentitySource]"},
+        "network_block": {"key": "networkBlock", "type": "str"},
+        "management_network": {"key": "managementNetwork", "type": "str"},
+        "provisioning_network": {"key": "provisioningNetwork", "type": "str"},
+        "vmotion_network": {"key": "vmotionNetwork", "type": "str"},
+        "vcenter_password": {"key": "vcenterPassword", "type": "str"},
+        "nsxt_password": {"key": "nsxtPassword", "type": "str"},
+        "vcenter_certificate_thumbprint": {
+            "key": "vcenterCertificateThumbprint",
+            "type": "str",
+        },
+        "nsxt_certificate_thumbprint": {
+            "key": "nsxtCertificateThumbprint",
+            "type": "str",
+        },
     }
 
-    def __init__(self, *, circuit=None, cluster=None, internet=None, identity_sources=None, network_block: str=None, vcenter_password: str=None, nsxt_password: str=None, **kwargs) -> None:
+    def __init__(
+        self,
+        *,
+        circuit=None,
+        cluster=None,
+        internet=None,
+        identity_sources=None,
+        network_block: str = None,
+        vcenter_password: str = None,
+        nsxt_password: str = None,
+        **kwargs,
+    ) -> None:
         super(PrivateCloudProperties, self).__init__(**kwargs)
         self.provisioning_state = None
         self.circuit = circuit
