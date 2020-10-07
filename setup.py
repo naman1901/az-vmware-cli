@@ -16,8 +16,8 @@ DEPENDENCIES = [
 setup(
     name='vmware',
     version=VERSION,
-    description='Preview Azure VMware Solution commands.',
-    long_description='Additional commands providing support for preview Azure VMware Solution features.',
+    description='Azure VMware Solution commands.',
+    long_description='Additional commands providing support for Azure VMware Solution features.',
     license='MIT',
     author='Microsoft',
     author_email='azpycli@microsoft.com',
